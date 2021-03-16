@@ -12,28 +12,29 @@ For front-end only odometry, you may visit [FLOAM (fast lidar odometry and mappi
 Watch our demo at [Video Link](https://youtu.be/Kfi6CFK4Ke4)
 <p align='center'>
 <a href="https://youtu.be/0-plzzxibHA" target="_blank">
-<img width="65%" src="/img/iscloam_title.gif"/>
+<img width="65%" src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/iscloam/img/iscloam_title.gif"/>
+  
 </a>
 </p>
 
 ### 1.2. Mapping Example
 <p align='center'>
 <a href="https://youtu.be/0-plzzxibHA" target="_blank">
-<img width="65%" src="/img/iscloam_kitti_mapping.gif"/>
+<img width="65%" src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/iscloam/img/iscloam_kitti_mapping.gif"/>
 </a>
 </p>
 
 ### 1.3. Localization Example
 <p align='center'>
-<img width="65%" src="/img/iscloam_kitti.gif"/>
+<img width="65%" src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/iscloam/img/iscloam_kitti.gif"/>
 </p>
 
 
 ### 1.4. Ground Truth Comparison
 Green: ISCLOAM        Red: Ground Truth
 <p align='center'>
-<img src="/img/00.png" width = 45% />
-<img src="/img/05.png" width = 45% />
+<img src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/iscloam/img/00.png" width = 45% />
+<img src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/iscloam/img/05.png" width = 45% />
 </p>
 
                       KITTI sequence 00                                  KITTI sequence 05
