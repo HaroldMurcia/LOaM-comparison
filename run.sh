@@ -3,9 +3,24 @@
 # Author : Cristian Rubio 
 # Email  : cristianrubioa@gmail.com
 
-# Test 
-#./io_path.sh <method> <sequence>
-#./io_path.sh iscloam 07
+# ARG User
+METHOD=$1
+SEQUENCE=$2 
+
+display_usage() { 
+	echo -e "Usage: $0 <method> <sequence>"
+    echo "<method> {loam, legoloam, floam, iscloam}"
+    echo "<sequence> {00, 01, 02, ... 10}"  
+} 
+
+# if less than two arguments supplied, display usage 
+if [  $# -le 1 ] 
+then 
+	display_usage ; exit 1
+elif [[ ( $# == "--help") ||  $# == "-h" ]]  # check supplied -h or --help
+then 
+	display_usage ; exit 0
+fi
 
 # Create PATH_SEQ
 mkdir -p sequences ; cd sequences;
@@ -16,11 +31,8 @@ do
     mkdir -p "0"$COUNT 
     ((COUNT++))
 done
-mkdir -p 10; cd .. ; echo "- Created directories : [PATH_SEQ completed]" ; echo ""
+mkdir -p 10 ; cd .. ; echo "" ; echo "- Created directories : [PATH_SEQ completed]" ; echo ""
 
-# ARG User
-METHOD=$1
-SEQUENCE=$2   
 
 SPACES="          "
 NAME_I=$SEQUENCE ; EXT_I=".bag" ; FILE_I=$NAME_I$EXT_I
@@ -33,10 +45,12 @@ PATH_SEQ=$(pwd)"/sequences/"$SEQUENCE"/" ; echo "* PATH   : ""/sequences/"$SEQUE
 INPUT_FILE=$PATH_SEQ$FILE_I              ; echo "* INPUT  : $SPACES └───" $FILE_I
 OUTPUT_FILE=$PATH_SEQ$FILE_O             ; echo "* OUTPUT : $SPACES └───" $FILE_O ; echo ""
 
+rm -rf $OUTPUT_FILE || true
+
 if [ $METHOD = "iscloam" ]
 then
     echo ">> roslaunch iscloam iscloam.launch" ; echo ""
-    #roslaunch iscloam iscloam.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
+    roslaunch iscloam iscloam.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
 else
     echo "No method"
 fi
