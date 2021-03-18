@@ -3,6 +3,7 @@
     <arg name="INPUT" />
     <arg name="OUTPUT" />
     <node pkg="rosbag" type="play" name="rosbag_play" args="--clock $(arg INPUT)" />
+    <remap from="/velodyne_points" to="kitti/velo/pointcloud" />
 
     <!--- Sim Time -->
     <param name="/use_sim_time" value="true" />
