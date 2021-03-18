@@ -10,7 +10,7 @@ This code is modified from [LOAM](https://github.com/laboshinl/loam_velodyne) an
 Watch our demo at [Video Link](https://youtu.be/PzZly1SQtng)
 <p align='center'>
 <a href="https://youtu.be/PzZly1SQtng">
-<img width="65%" src="/img/floam_kitti.gif"/>
+<img width="65%" src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/floam/img/floam_kitti.gif"/>
 </a>
 </p>
 
@@ -31,13 +31,13 @@ Localization error:
 
 ### 2.2. localization result
 <p align='center'>
-<img width="65%" src="/img/kitti_example.gif"/>
+<img width="65%" src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/floam/img/kitti_example.gif"/>
 </p>
 
 ### 2.3. mapping result
 <p align='center'>
 <a href="https://youtu.be/w_R0JAymOSs">
-<img width="65%" src="/img/floam_mapping.gif"/>
+<img width="65%" src="https://raw.githubusercontent.com/cristianrubioa/methods_lidar_3d/main/floam/img/floam_mapping.gif"/>
 </a>
 </p>
 
