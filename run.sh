@@ -31,7 +31,7 @@ do
     mkdir -p "0"$COUNT 
     ((COUNT++))
 done
-mkdir -p 10 ; cd .. ; echo "" ; echo "- Created directories : [PATH_SEQ completed]" ; echo ""
+mkdir -p 10 ; cd .. ; #echo "" ; echo "- Created directories : [PATH_SEQ completed]" ; echo ""
 
 
 SPACES="          "
@@ -41,9 +41,17 @@ SUFFIX_O="_pred" ; EXT_O=".txt" ; FILE_O=$NAME_I"_"$METHOD$SUFFIX_O$EXT_O
 echo "==================================================" 
 echo "                METHOD -> [$METHOD]" 
 echo "==================================================" ; echo ""
-PATH_SEQ=$(pwd)"/sequences/"$SEQUENCE"/" ; echo "* PATH   : ""/sequences/"$SEQUENCE"/"
-INPUT_FILE=$PATH_SEQ$FILE_I              ; echo "* INPUT  : $SPACES └───" $FILE_I
-OUTPUT_FILE=$PATH_SEQ$FILE_O             ; echo "* OUTPUT : $SPACES └───" $FILE_O ; echo ""
+echo "* PATH   : ""/sequences/"$SEQUENCE"/"
+echo "* INPUT  : $SPACES └───" $FILE_I
+echo "* OUTPUT : $SPACES └───" $FILE_O ; echo ""
+
+if [ ! -f $INPUT_FILE ]; then
+    echo "File [$FILE_I] not found!" ; exit 1
+fi
+
+PATH_SEQ=$(pwd)"/sequences/"$SEQUENCE"/" 
+INPUT_FILE=$PATH_SEQ$FILE_I              
+OUTPUT_FILE=$PATH_SEQ$FILE_O           
 
 rm -rf $OUTPUT_FILE || true
 
