@@ -59,6 +59,18 @@ if [ $METHOD = "iscloam" ]
 then
     echo ">> roslaunch iscloam iscloam.launch" ; echo ""
     roslaunch iscloam iscloam.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
+elif [ $METHOD = "floam" ]
+then
+    echo ">> roslaunch floam floam.launch" ; echo ""
+    roslaunch roslaunch floam floam.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
+elif [ $METHOD = "aloam" ]
+then
+    echo ">> roslaunch aloam_velodyne aloam_velodyne_HDL_64.launch" ; echo ""
+    roslaunch aloam_velodyne aloam_velodyne_HDL_64.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
+elif [ $METHOD = "legoloam" ]
+then
+    echo ">> roslaunch lego_loam run.launch" ; echo ""
+    roslaunch lego_loam run.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
 else
     echo "No method"
 fi
