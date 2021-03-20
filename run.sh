@@ -62,7 +62,7 @@ then
 elif [ $METHOD = "floam" ]
 then
     echo ">> roslaunch floam floam.launch" ; echo ""
-    roslaunch roslaunch floam floam.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
+    roslaunch floam floam.launch INPUT:=$INPUT_FILE OUTPUT:=$OUTPUT_FILE
 elif [ $METHOD = "aloam" ]
 then
     echo ">> roslaunch aloam_velodyne aloam_velodyne_HDL_64.launch" ; echo ""

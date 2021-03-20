@@ -32,6 +32,8 @@
 
 #include "utility.h"
 
+std::string RESULT_PATH;
+
 class TransformFusion{
 
 private:
@@ -58,6 +60,11 @@ private:
     float transformMapped[6];
     float transformBefMapped[6];
     float transformAftMapped[6];
+    int init_flag=true;
+
+    Eigen::Matrix4f H;
+    Eigen::Matrix4f H_init;
+    Eigen::Matrix4f H_rot;
 
     std_msgs::Header currentHeader;
 
@@ -91,8 +98,12 @@ public:
         }
     }
 
+
+
+
     void transformAssociateToMap()
     {
+
         float x1 = cos(transformSum[1]) * (transformBefMapped[3] - transformSum[3]) 
                  - sin(transformSum[1]) * (transformBefMapped[5] - transformSum[5]);
         float y1 = transformBefMapped[4] - transformSum[4];
@@ -180,6 +191,7 @@ public:
 
     void laserOdometryHandler(const nav_msgs::Odometry::ConstPtr& laserOdometry)
     {
+
         currentHeader = laserOdometry->header;
 
         double roll, pitch, yaw;
@@ -209,10 +221,76 @@ public:
         laserOdometry2.pose.pose.position.z = transformMapped[5];
         pubLaserOdometry2.publish(laserOdometry2);
 
+/////////////////////added, cout results///////////////////
+
+	Eigen::Quaterniond q;
+
+	q.w()=laserOdometry2.pose.pose.orientation.w;
+	q.x()=laserOdometry2.pose.pose.orientation.x;
+	q.y()=laserOdometry2.pose.pose.orientation.y;
+	q.z()=laserOdometry2.pose.pose.orientation.z;
+
+	Eigen::Matrix3d R = q.toRotationMatrix();
+
+	if (init_flag==true)	
+	{
+		
+	H_init<< R.row(0)[0],R.row(0)[1],R.row(0)[2],transformMapped[3],
+       	 	 R.row(1)[0],R.row(1)[1],R.row(1)[2],transformMapped[4],
+       	 	 R.row(2)[0],R.row(2)[1],R.row(2)[2],transformMapped[5],
+          	 0,0,0,1;  
+	
+	init_flag=false;
+
+	std::cout<<"surf_th : "<<surfThreshold<<endl;
+
+ 	}
+
+	H_rot<<	-1,0,0,0,
+	    	 0,-1,0,0,
+     	   	 0,0,1,0,	
+     	    	 0,0,0,1; 
+		
+	H<<  R.row(0)[0],R.row(0)[1],R.row(0)[2],transformMapped[3],
+	     R.row(1)[0],R.row(1)[1],R.row(1)[2],transformMapped[4],
+     	     R.row(2)[0],R.row(2)[1],R.row(2)[2],transformMapped[5],
+     	     0,0,0,1;  
+
+	
+
+	H = H_rot*H_init.inverse()*H; //to get H12 = H10*H02 , 180 rot according to z axis
+
+	std::ofstream foutC(RESULT_PATH, std::ios::app);
+
+	foutC.setf(std::ios::scientific, std::ios::floatfield);
+        foutC.precision(6);
+ 
+	//foutC << R[0] << " "<<transformMapped[3]<<" "<< R.row(1) <<" "<<transformMapped[4] <<" "<<  R.row(2) <<" "<< transformMapped[5] << endl;
+	 for (int i = 0; i < 3; ++i)	
+	{	 
+		for (int j = 0; j < 4; ++j)
+        	{
+			if(i==2 && j==3)
+			{
+				foutC <<H.row(i)[j]<< endl ;	
+			}
+			else
+			{
+				foutC <<H.row(i)[j]<< " " ;
+			}
+			
+		}
+	}
+
+	foutC.close();
+
+
+//////////////////////////////////////////////////
         laserOdometryTrans2.stamp_ = laserOdometry->header.stamp;
         laserOdometryTrans2.setRotation(tf::Quaternion(-geoQuat.y, -geoQuat.z, geoQuat.x, geoQuat.w));
         laserOdometryTrans2.setOrigin(tf::Vector3(transformMapped[3], transformMapped[4], transformMapped[5]));
         tfBroadcaster2.sendTransform(laserOdometryTrans2);
+
     }
 
     void odomAftMappedHandler(const nav_msgs::Odometry::ConstPtr& odomAftMapped)
@@ -243,7 +321,10 @@ public:
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "lego_loam");
-    
+    ros::NodeHandle nh;
+
+    nh.getParam("RESULT_PATH", RESULT_PATH);
+
     TransformFusion TFusion;
 
     ROS_INFO("\033[1;32m---->\033[0m Transform Fusion Started.");
