@@ -85,6 +85,15 @@ const int laserCloudNum = laserCloudWidth * laserCloudHeight * laserCloudDepth; 
 int laserCloudValidInd[125];
 int laserCloudSurroundInd[125];
 
+//declare var
+int init_flag=true;
+
+    Eigen::Matrix4f H;
+    Eigen::Matrix4f H_init;
+    Eigen::Matrix4f H_rot;
+
+std::string RESULT_PATH;
+
 // input: from odom
 pcl::PointCloud<PointType>::Ptr laserCloudCornerLast(new pcl::PointCloud<PointType>());
 pcl::PointCloud<PointType>::Ptr laserCloudSurfLast(new pcl::PointCloud<PointType>());
@@ -226,6 +235,59 @@ void laserOdometryHandler(const nav_msgs::Odometry::ConstPtr &laserOdometry)
 	odomAftMapped.pose.pose.position.y = t_w_curr.y();
 	odomAftMapped.pose.pose.position.z = t_w_curr.z();
 	pubOdomAftMappedHighFrec.publish(odomAftMapped);
+
+	///////////////////// KITTI format pose ///////////////////
+
+    Eigen::Matrix3d R = q_current.toRotationMatrix();
+
+    if (init_flag==true)
+    {
+
+    H_init<< R.row(0)[0],R.row(0)[1],R.row(0)[2],t_w_curr.x(),
+             R.row(1)[0],R.row(1)[1],R.row(1)[2],t_w_curr.y(),
+             R.row(2)[0],R.row(2)[1],R.row(2)[2],t_w_curr.z(),
+             0,0,0,1;
+
+    init_flag=false;
+
+    }
+
+    H_rot<<	0,-1,0,0, 
+            0,0,-1,0,
+            1,0,0,0,
+            0,0,0,1;
+
+    H<<  R.row(0)[0],R.row(0)[1],R.row(0)[2],t_w_curr.x(),
+         R.row(1)[0],R.row(1)[1],R.row(1)[2],t_w_curr.y(),
+         R.row(2)[0],R.row(2)[1],R.row(2)[2],t_w_curr.z(),
+         0,0,0,1;
+
+    H = H_rot*H_init.inverse()*H; 
+
+    std::ofstream foutC(RESULT_PATH, std::ios::app);
+
+    foutC.setf(std::ios::scientific, std::ios::floatfield);
+    foutC.precision(6);
+
+    for (int i = 0; i < 3; ++i)
+    {
+            for (int j = 0; j < 4; ++j)
+            {
+                     if(i==2 && j==3)
+                    {
+                            foutC <<H.row(i)[j]<< std::endl ;
+                    }
+                    else
+                    {
+                            foutC <<H.row(i)[j]<< " " ;
+                    }
+            }
+    }
+
+    foutC.close();
+
+    //////////////////////////////////////////////////
+	
 }
 
 void process()
