@@ -238,7 +238,7 @@ void laserOdometryHandler(const nav_msgs::Odometry::ConstPtr &laserOdometry)
 
 	///////////////////// KITTI format pose ///////////////////
 
-    Eigen::Matrix3d R = q_current.toRotationMatrix();
+    Eigen::Matrix3d R =  q_w_curr.toRotationMatrix();
 
     if (init_flag==true)
     {
@@ -961,6 +961,8 @@ int main(int argc, char **argv)
 
 	float lineRes = 0;
 	float planeRes = 0;
+
+	nh.getParam("RESULT_PATH", RESULT_PATH);
 	nh.param<float>("mapping_line_resolution", lineRes, 0.4);
 	nh.param<float>("mapping_plane_resolution", planeRes, 0.8);
 	printf("line resolution %f plane resolution %f \n", lineRes, planeRes);

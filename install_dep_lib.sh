@@ -7,7 +7,7 @@ echo "=================================================="
 echo "     Begin to install all the dependent libs"
 echo "==================================================" 
 
-cd .. ; mkdir dependent_libs ; cd dependent_libs
+cd .. ; mkdir -p dependent_libs ; cd dependent_libs
 echo "Create a new folder called dependent_libs at current path"
 
 sudo apt-get update
@@ -31,12 +31,12 @@ echo "Install [Ceres]"
 git clone https://ceres-solver.googlesource.com/ceres-solver
 mkdir ceres-bin ; cd ceres-bin
 cmake ../ceres-solver
-make -j3 ; make install
+make -j3 ; sudo make install
 echo "Install [Ceres] done"
 
 echo "Install [GTSAM]"
-git clone https://github.com/borglab/gtsam/archive/4.0.3.zip
-unzip gtsam-4.0.3.zip ; cd gtsam-4.0.3
+wget https://github.com/borglab/gtsam/archive/4.0.3.zip
+unzip 4.0.3.zip ; cd gtsam-4.0.3
 mkdir build && cd build
 cmake .. ; sudo make install
 echo "Install [GTSAM] done"
