@@ -1,8 +1,77 @@
 # methods_lidar_3d
-methods_lidar_3d
+
+## Menu
+
+  - [**Package dependency**](#dependency)
+
+  - [**Package install**](#install)
+
+  - [**Prepare data**](#prepare-data)
+
+  - [**KITTI dataset**](#kitti-dataset)
+
+  - [**Run the package**](#run-the-package)
+
+  - [**Paper**](#paper)
+
+  - [**Related Package**](#related-package)
+
+  - [**Acknowledgement**](#acknowledgement)
 
 
-## 
+## Dependency
+
+- [ROS](http://wiki.ros.org/ROS/Installation) (tested with Kinetic and Melodic)
+- Dependent libs: [Ceres](http://ceres-solver.org/installation.html), [GTSAM](https://github.com/borglab/gtsam/releases), [PCL](https://pointclouds.org/downloads/)
+
+You may run the following shell file to install all the dependent libs (tested on Ubuntu 16.04 & 18.04):
+```
+./install_dep_lib.sh
+```
+
+## Install
+
+Use the following commands to download and compile the package:
+
+```
+cd ~/catkin_ws/src
+https://github.com/cristianrubioa/methods_lidar_3d
+cd ..
+catkin_make -j1
+```
+When you compile the code for the first time, you need to add "-j1" behind "catkin_make" for generating some message types. "-j1" is not needed for future compiling.
+
+## Run the package
+
+Run the launch file:
+```
+./run.sh <method> <num_sequence>
+
+# <method> [aloam, floam ,iscloam, legoloam]
+# <num_sequence> [00, 01, ... 10]
+```
+
+```
+# Example
+./run.sh aloam 00
+```
+
+## Prepare data
+
+1. Making new bagfile from KITTI dataset:
+```
+nano ~/catkin_ws/src/methods_lidar_3d/kitti2bag/launch/kitti2bag.launch
+```
+Change 'dataset_folder' and 'output_bag_file' to your own directories.
+
+2. Move bagfile to sequence folder:
+```
+mv <num_sequence>.bag ~/catkin_ws/src/methods_lidar_3d/sequences/<num_sequence>
+```
+
+## KITTI dataset
+Download datasets to test the functionality of the package:
+
 | Sequence | Environment   | Dimension (m×m)| Poses  | Path_length (m)|Odom_dataset  | size | .bag | size |
 |:--------:|:-------------:|:--------------:|:------:|:--------------:|:-------------:|:----:|:----:|:----:|
 |    00    | Urban         |   564×496      |  4541  |   3724.187     | [Mega](https://mega.nz/file/lIxiTZ6K#4AZzEqGlFs6HE9F17vt3BsLIyPmIXr4AXvZW6aiYAnk) / [Drive](https://drive.google.com/file/d/1WU0m-NvS9KQbXZn6jo40n6JjdDhO6o_A/view?usp=sharing) | 8.39 GB  |
@@ -16,3 +85,18 @@ methods_lidar_3d
 |    08    | Urban+Country |   808×391      |  4071  |    3222.795    | [Mega](https://mega.nz/file/EYoWUaZQ#jLToiVIUf9GBxb_su_1Lx0hw1EhB7C3D1Y5SLWMGNRQ) / [Drive](https://drive.google.com/file/d/1Z7TQqYMyFKeRnqR4vgrNjMPkXQy9G-U_/view?usp=sharing) | 7.63 GB  |
 |    09    | Urban+Country |   465×568      |  1591  |    1705.051    | [Mega](https://mega.nz/file/YZoEBDrT#rzMU1x_9aMtgOSKa3ctMLoxRl_K6ssw-SdaHuxr0TjI) / [Drive](https://drive.google.com/file/d/1h5Dtz3DRu8Avra5JyEKdEJDZb4cZL1xk/view?usp=sharing) | 3.01 GB  |
 |    10    | Urban+Country |   671×177      |  1201  |    919.518     | [Mega](https://mega.nz/file/AZgEGTgR#l3JUGuyyHI-QGTQG9RQUg5evpTNWtrnwRGWUY9j1ztQ) / [Drive](https://drive.google.com/file/d/1ZCMO646624y8rv_gYqiDh4UiKBoi4Gdi/view?usp=sharing) | 2.31 GB  |
+
+## Related Package
+
+  - [A-LOAM](https://github.com/HKUST-Aerial-Robotics/A-LOAM)
+  - [FLOAM](https://github.com/wh200720041/floam)
+  - [ISCLOAM](https://github.com/wh200720041/iscloam)
+  - [LeGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM)
+
+
+## Acknowledgement
+  - [1] *A. Geiger, P. Lenz, and R. Urtasun, “Are we ready for autonomous driving? the KITTIvision benchmark suite,” inProceedings of the IEEE Computer Society Conference onComputer Vision and Pattern Recognition, 2012.*
+  
+  - [2] *J. Zhang and S. Singh, “LOAM: Lidar Odometry and Mapping in Real-time", Robotics: Science and Systems , vol. 2, 2014.*
+  - [3] *T. Shan and B. Englot, “LeGO-LOAM: Lightweight and Ground-Optimized Lidar Odom-etry and Mapping on Variable Terrain,” inIEEE International Conference on IntelligentRobots and Systems, 2018.*
+  - [4] *H. Wang, C. Wang, and L. Xie, “Intensity Scan Context: Coding Intensity and GeometryRelations for Loop Closure Detection,” inProceedings - IEEE International Conferenceon Robotics and Automation, 2020.*
