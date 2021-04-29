@@ -68,12 +68,16 @@ Change 'dataset_folder' and 'output_bag_file' to your own directories.
 ```
 mv <num_sequence>.bag ~/catkin_ws/src/methods_lidar_3d/sequences/<num_sequence>
 ```
+3. Run the launch file:
+```
+roslaunch kitti2bag kitti2bag.launch
+```
 
 ## KITTI dataset
 Download datasets to test the functionality of the package:
 
-| Sequence | Environment   | Dimension (m×m)| Poses  | Path_length (m)|Odom_dataset  | size | .bag | size |
-|:--------:|:-------------:|:--------------:|:------:|:--------------:|:-------------:|:----:|:----:|:----:|
+| Sequence | Environment   | Dimension (m×m)| Poses  | Path_length (m)|Odom_dataset  | size |
+|:--------:|:-------------:|:--------------:|:------:|:--------------:|:-------------:|:----:|
 |    00    | Urban         |   564×496      |  4541  |   3724.187     | [Mega](https://mega.nz/file/lIxiTZ6K#4AZzEqGlFs6HE9F17vt3BsLIyPmIXr4AXvZW6aiYAnk) / [Drive](https://drive.google.com/file/d/1WU0m-NvS9KQbXZn6jo40n6JjdDhO6o_A/view?usp=sharing) | 8.39 GB  |
 |    01    | Highway       | 1157×1827      |  1101  |   2453.203     | [Mega](https://mega.nz/file/8Z5UlJTS#w7hpD6vSFofSV0Oq04mQp6SOXnv4tb-5BOX20R_koeE) / [Drive](https://drive.google.com/file/d/1cHwZQtCs0zUa3xco3fnu1RASvEAGMyYy/view?usp=sharing) | 1.79 GB  | 
 |    02    | Urban+Country |   599×946      |  4661  |   5067.233     | [Mega](https://mega.nz/file/xdwX3ArR#hLlePrLydBKYOmxWa2stjEP4QMnk5z6UsEOveBaJ9Tk) / [Drive](https://drive.google.com/file/d/1xWUqMM_t7dsVBayfLACWLDsgkxKc-lDD/view?usp=sharing) | 9.0 GB   | 
