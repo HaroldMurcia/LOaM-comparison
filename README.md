@@ -1,4 +1,6 @@
-# methods_lidar_3d
+# LoaM Comparison
+
+Light detection and ranging LIDAR systems on-board mobile platforms are in rapid advancement for real-time mapping applications. Modern 3D laser scanners have a high data rate which, coupled with the complexity of their processing methods, makes simultaneous online localisation and mapping (SLAM) a computational challenge. Different 3D LiDAR SLAM algorithms have emerged in recent years, most notably LiDAR Odometry and Mapping and its derivatives. This repo performs an implementation of A-LOAM, ISC-LOAM and LeGO-LOAM algorithms and a respective comparison with the total sequences of the Kitti database which includes different environments and routes from a Velodyne HDL-64E sensor.
 
 ## Menu
 
@@ -97,10 +99,10 @@ Download datasets to test the functionality of the package:
   - [ISCLOAM](https://github.com/wh200720041/iscloam)
   - [LeGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM)
 
+## Authors
+
+* [Prof. Harold F MURCIA](www.haroldmurcia.com)
+* [Cristian F Rubio](https://www.linkedin.com/in/cristianrubioaguiar/)
 
 ## Acknowledgement
-  - [1] *A. Geiger, P. Lenz, and R. Urtasun, “Are we ready for autonomous driving? the KITTIvision benchmark suite,” inProceedings of the IEEE Computer Society Conference onComputer Vision and Pattern Recognition, 2012.*
-  
-  - [2] *J. Zhang and S. Singh, “LOAM: Lidar Odometry and Mapping in Real-time", Robotics: Science and Systems , vol. 2, 2014.*
-  - [3] *T. Shan and B. Englot, “LeGO-LOAM: Lightweight and Ground-Optimized Lidar Odom-etry and Mapping on Variable Terrain,” inIEEE International Conference on IntelligentRobots and Systems, 2018.*
-  - [4] *H. Wang, C. Wang, and L. Xie, “Intensity Scan Context: Coding Intensity and GeometryRelations for Loop Closure Detection,” inProceedings - IEEE International Conferenceon Robotics and Automation, 2020.*
+This work was supported in part by the Universidad de Ibagué under research project 19-489-INT
