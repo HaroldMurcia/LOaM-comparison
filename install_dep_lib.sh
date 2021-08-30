@@ -3,55 +3,69 @@
 # Author : Cristian Rubio 
 # Email  : cristianrubioa@gmail.com
 
-echo "==================================================" 
-echo "     Begin to install all the dependent libs"
-echo "==================================================" 
+# exit on errors
+set -e
+
+echo "===================================================" 
+echo "   >> Begin to install all the dependent libs <<"
+echo "===================================================\n" 
+
+Install() {
+    echo "\n=============================" 
+    echo " * Install: -> [$1]"
+    echo "=============================" 
+}
+
+Done() {
+    if [ $1 = "Finished" ]
+    then
+        echo "\n\b * Task completed!"
+        echo "check that each dependency has been installed completely and correctly"
+    else
+        echo "-- ( \"$1\" INSTALLATION DONE )"
+    fi
+}
+
 
 cd .. ; mkdir -p dependent_libs ; cd dependent_libs
-echo "Create a new folder called dependent_libs at current path"
+echo " * Create a new folder called <dependent_libs> at current path."
 
 sudo apt-get update
 
 # CMake
 sudo apt-get install cmake
 # google-glog + gflags
-sudo apt-get install libgoogle-glog-dev libgflags-dev
+sudo apt-get install -y libgoogle-glog-dev libgflags-dev
 # BLAS & LAPACK
-sudo apt-get install libatlas-base-dev
+sudo apt-get install -y libatlas-base-dev
 # Eigen3
-sudo apt-get install libeigen3-dev
+sudo apt-get install -y libeigen3-dev
 # SuiteSparse and CXSparse (optional)
 sudo apt-get install libsuitesparse-dev
 
-echo "Install [PCL]"
-sudo apt-get install libpcl-dev pcl-tools libproj-dev
-echo "Install [PCL] done"
+Install PCL
+sudo apt-get install -y libpcl-dev pcl-tools libproj-dev
+Done PCL
 
-echo "Install [Ceres]"
+Install Ceres
 git clone https://ceres-solver.googlesource.com/ceres-solver
 mkdir ceres-bin ; cd ceres-bin
 cmake ../ceres-solver
 make -j3 ; sudo make install
-echo "Install [Ceres] done"
+Done Ceres
 
-echo "Install [GTSAM]"
+Install GTSAM
 wget https://github.com/borglab/gtsam/archive/4.0.3.zip
 unzip 4.0.3.zip ; cd gtsam-4.0.3
 mkdir build && cd build
 cmake .. ; sudo make install
-echo "Install [GTSAM] done"
+Done GTSAM
 
 # echo "For the python toolboxs of the project"
-# echo "Install python dependence"
-# sudo pip3 install -r ./python/requirements.txt
-# echo "Install python dependence done"
-# echo "install evaluation tool"
+# Install evo"
 # pip install evo --upgrade --no-binary evo
-# echo "install evaluation tool done"
 
-echo "Finished"
+Done Finished
 
 # you might then delete the dependent_libs folder
-cd .. ; rm -rf ./dependent_libs
-
-# test pass on Ubuntu 18.04
+cd cd ~/catkin_ws/src ; rm -rf dependent_libs

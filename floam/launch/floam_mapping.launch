@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="INPUT" />
-    <arg name="OUTPUT" />
+    <arg name="OUTPUT_TRAJ" />
+    <arg name="OUTPUT_MAP" />
     <node pkg="rosbag" type="play" name="rosbag_play" args="--clock $(arg INPUT)" /> 
     <remap from="/velodyne_points" to="kitti/velo/pointcloud" />
+
+    <node pkg="pcl_ros" type="pointcloud_to_pcd" name="pointcloud_to_pcd"> 
+    <remap from="input" to="/map"/>
+    <param name="prefix" value="$(arg OUTPUT_MAP)"/>
+    </node>
     
     <!-- For Velodyne VLP-16 
     <param name="scan_line" value="16" />
@@ -19,8 +25,7 @@
     <!--- Sim Time -->
     <param name="/use_sim_time" value="true" />
     <param name="scan_period" value="0.1" />
-    <param name="RESULT_PATH" type="string" value="$(arg OUTPUT)" />
-    <param name="vertical_angle" type="double" value="2.0" />
+    <param name="RESULT_PATH" type="string" value="$(arg OUTPUT_TRAJ)" />    <param name="vertical_angle" type="double" value="2.0" />
     <param name="max_dis" type="double" value="90.0" />
     <param name="map_resolution" type="double" value="0.4" />
     <param name="min_dis" type="double" value="3.0" />

@@ -1,9 +1,15 @@
 <launch>
     <arg name="INPUT" />
-    <arg name="OUTPUT" />
+    <arg name="OUTPUT_TRAJ" />
+    <arg name="OUTPUT_MAP" />
     <node pkg="rosbag" type="play" name="rosbag_play" args="--clock $(arg INPUT)" /> 
-    <remap from="/velodyne_points" to="kitti/velo/pointcloud" />
-    <param name="RESULT_PATH" type="string" value="$(arg OUTPUT)" />
+    <remap from="velodyne_points" to="kitti/velo/pointcloud" />
+    <param name="RESULT_PATH" type="string" value="$(arg OUTPUT_TRAJ)" />
+
+    <node pkg="pcl_ros" type="pointcloud_to_pcd" name="pointcloud_to_pcd"> 
+    <remap from="input" to="/laser_cloud_map"/>
+    <param name="prefix" value="$(arg OUTPUT_MAP)"/>
+    </node>
 
     <param name="scan_line" type="int" value="64" />
 
