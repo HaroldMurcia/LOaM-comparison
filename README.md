@@ -2,7 +2,13 @@
 
 Light detection and ranging LIDAR systems on-board mobile platforms are in rapid advancement for real-time mapping applications. Modern 3D laser scanners have a high data rate which, coupled with the complexity of their processing methods, makes simultaneous online localisation and mapping (SLAM) a computational challenge. Different 3D LiDAR SLAM algorithms have emerged in recent years, most notably LiDAR Odometry and Mapping and its derivatives. 
 
-This repo performs an implementation of A-LOAM, ISC-LOAM and LeGO-LOAM algorithms and a respective comparison with the total sequences of the Kitti database which includes different environments and routes from a Velodyne HDL-64E sensor.
+This repo performs an implementation of A-LOAM, ISC-LOAM and LeGO-LOAM algorithms and a respective comparison with the total sequences of the KITTI database which includes different environments and routes from a Velodyne HDL-64E sensor.
+
+A demonstration can be found here -> [DEMO "A-LOAM"](https://www.youtube.com/watch?v=wfvwhLkBqY)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/wfvwhLkBqY4/0.jpg)](https://www.youtube.com/watch?v=wfvwhLkBqY4)
+
+
 
 ## Menu
   - [**Package dependency**](#dependency)
