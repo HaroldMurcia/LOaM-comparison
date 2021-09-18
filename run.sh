@@ -10,7 +10,7 @@ SEQUENCE=$2
 # Usage launch file
 USAGE() { 
     echo -e "Usage: $0 <method> <sequence>"
-    echo "<method> {loam, floam, iscloam, legoloam}"
+    echo "<method> {aloam, floam, iscloam, legoloam}"
     echo "<sequence> {00, 01, 02, ... 10}"  
 } 
 

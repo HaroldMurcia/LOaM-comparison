@@ -1,25 +1,25 @@
-#!/bin/bash 
+#!/bin/bash
 
-# Author : Cristian Rubio 
+# Author : Cristian Rubio
 # Email  : cristianrubioa@gmail.com
 
 # exit on errors
 set -e
 
-echo "===================================================" 
+echo "==================================================="
 echo "   >> Begin to install all the dependent libs <<"
-echo "===================================================\n" 
+echo "===================================================\n"
 
 Install() {
-    echo "\n=============================" 
+    echo "\n============================="
     echo " * Install: -> [$1]"
-    echo "=============================" 
+    echo "============================="
 }
 
 Done() {
     if [ $1 = "Finished" ]
     then
-        echo "\n\b * Task completed!"
+        echo "* Task completed!"
         echo "check that each dependency has been installed completely and correctly"
     else
         echo "-- ( \"$1\" INSTALLATION DONE )"
@@ -51,14 +51,14 @@ Install Ceres
 git clone https://ceres-solver.googlesource.com/ceres-solver
 mkdir ceres-bin ; cd ceres-bin
 cmake ../ceres-solver
-make -j3 ; sudo make install
+make -j3 ; sudo make install ; cd ..
 Done Ceres
 
 Install GTSAM
 wget https://github.com/borglab/gtsam/archive/4.0.3.zip
 unzip 4.0.3.zip ; cd gtsam-4.0.3
 mkdir build && cd build
-cmake .. ; sudo make install
+cmake .. ; sudo make install ; cd ..
 Done GTSAM
 
 # echo "For the python toolboxs of the project"
@@ -68,4 +68,4 @@ Done GTSAM
 Done Finished
 
 # you might then delete the dependent_libs folder
-cd cd ~/catkin_ws/src ; rm -rf dependent_libs
+cd ~/catkin_ws/src ; rm -rf dependent_libs
