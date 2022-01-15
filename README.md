@@ -6,7 +6,7 @@ This repo performs an implementation of A-LOAM, ISC-LOAM and LeGO-LOAM algorithm
 
 A demonstration can be found here -> [DEMO "A-LOAM"](https://www.youtube.com/watch?v=wfvwhLkBqY)
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/wfvwhLkBqY4/0.jpg)](https://www.youtube.com/watch?v=wfvwhLkBqY4)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/wfvwhLkBqY4/0.jpg)](https://youtu.be/wfvwhLkBqY4)
 
 
 
@@ -20,10 +20,10 @@ A demonstration can be found here -> [DEMO "A-LOAM"](https://www.youtube.com/wat
   - [**KITTI dataset**](#kitti-dataset)
 
   - [**Run the package**](#run-the-package)
-
-  - [**Paper**](#paper)
   
   - [**Results**](#results)
+  
+  - [**Paper**](#paper)
 
   - [**Related Package**](#related-package)
 
@@ -140,6 +140,20 @@ Download datasets to test the functionality of the package:
 
 10 <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_aloam.png" width="90"> <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_floam.png" width="90"> <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_iscloam.png" width="90">
 <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_legoloam.png" width="90"> 
+
+## Cite LOaM-comparison
+Thank you for citing our [LOaM-comparison](https://ieeexplore.ieee.org/document/9633299) paper if you use any of this code:
+```
+@inproceedings{9633299,  
+author={Murcia, Harold F. and Rubio, Cristian F.},  
+booktitle={2021 IEEE 5th Colombian Conference on Automatic Control (CCAC)},   
+title={A Comparison of LiDAR Odometry and Mapping Techniques},   
+year={2021},  
+volume={},  
+number={},  
+pages={192-197},  
+doi={10.1109/CCAC51819.2021.9633299}}
+```
 
 ## Related Package
 
