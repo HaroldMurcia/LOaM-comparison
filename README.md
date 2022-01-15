@@ -23,7 +23,7 @@ A demonstration can be found here -> [DEMO "A-LOAM"](https://www.youtube.com/wat
   
   - [**Results**](#results)
   
-  - [**Paper**](#paper)
+  - [**Paper**](#cite-loam-comparison)
 
   - [**Related Package**](#related-package)
 
@@ -141,7 +141,7 @@ Download datasets to test the functionality of the package:
 10 <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_aloam.png" width="90"> <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_floam.png" width="90"> <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_iscloam.png" width="90">
 <img src = "https://github.com/cristianrubioa/methods_lidar_3d/blob/main/Demo/results/maps/10_legoloam.png" width="90"> 
 
-## Paper LOaM-comparison
+## Cite LOaM-comparison
 Thank you for citing our [LOaM-comparison](https://ieeexplore.ieee.org/document/9633299) paper if you use any of this code:
 ```
 @inproceedings{9633299,  
